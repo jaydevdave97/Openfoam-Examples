@@ -1,0 +1,79 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.01;
+
+// Key dimensions for the rectangular block:
+xMin -1;
+yMin -1;
+zMin -3;
+xMax 1;
+yMax 1;
+zMax 3;
+
+vertices
+(
+    ($xMin $yMin $zMin)   // Vertex 0: lower-front-left
+    ($xMax $yMin $zMin)   // Vertex 1: lower-front-right
+    ($xMax $yMax $zMin)   // Vertex 2: lower-back-right
+    ($xMin $yMax $zMin)   // Vertex 3: lower-back-left
+    ($xMin $yMin $zMax)   // Vertex 4: upper-front-left
+    ($xMax $yMin $zMax)   // Vertex 5: upper-front-right
+    ($xMax $yMax $zMax)   // Vertex 6: upper-back-right
+    ($xMin $yMax $zMax)   // Vertex 7: upper-back-left
+);
+
+blocks
+(
+    // Define a single hexahedral block using the 8 vertices above.
+    hex (0 1 2 3 4 5 6 7) (20 20 60) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        ( 
+            (4 7 6 5)  
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    walls
+    {
+        type wall;
+        faces
+        (
+	    (1 2 6 5) // front
+            (0 3 7 4) //back
+            (3 2 6 7) // upperwall
+            (0 1 5 4) // lowerwall
+        );
+    }
+);
+
+// ************************************************************************* //

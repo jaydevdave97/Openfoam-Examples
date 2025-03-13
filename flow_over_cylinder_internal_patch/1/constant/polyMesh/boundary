@@ -1,0 +1,99 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+11
+(
+    internal_3.1
+    {
+        type            cyclic;
+        neighbourPatch  internal_2.2;
+        nFaces          328;
+        startFace       83056;
+        matchTolerance  1e-6; 
+        transform       none;
+    }
+    lower_wall
+    {
+        type            wall;
+        nFaces          1080;
+        startFace       83384;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          328;
+        startFace       84464;
+    }
+    front
+    {
+        type            empty;
+        nFaces          3296;
+        startFace       84792;
+    }
+    upper_wall
+    {
+        type            wall;
+        nFaces          1080;
+        startFace       88088;
+    }
+    back
+    {
+        type            empty;
+        nFaces          3312;
+        startFace       89168;
+    }
+    internal_1.1
+    {
+        type            cyclic;
+        neighbourPatch  internal_2.1;
+        nFaces          328;
+        startFace       92480;
+        matchTolerance  1e-6; 
+        transform       none;
+    }
+    inlet
+    {
+        type            patch;
+        nFaces          328;
+        startFace       92808;
+    }
+    cylinder
+    {
+        type            wall;
+        nFaces          336;
+        startFace       93136;
+    }
+    internal_2.2
+    {
+        type            cyclic;
+        neighbourPatch  internal_3.1;
+        nFaces          328;
+        startFace       93472;
+        matchTolerance  1e-6; 
+        transform       none;
+    }
+    internal_2.1
+    {
+        type            cyclic;
+        neighbourPatch  internal_1.1;
+        nFaces          328;
+        startFace       93800;
+        matchTolerance  1e-6; 
+        transform       none;
+    }
+)
+
+// ************************************************************************* //

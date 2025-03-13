@@ -1,0 +1,5 @@
+gmshToFoam cylinder 2>&1 | tee gmshToFoam.log
+checkMesh 2>&1 | tee checkMesh.log
+foamRun 2>&1 | tee foamRun.log
+
+# Change the 0 folder boundary condition as per requirement from constant/polyMesh/boundary file
